@@ -10,7 +10,7 @@ const NoteCard = ({ note })=> {
 
   return (
     <Link to={`/notes/${note._id}`}>
-      <Box
+      <Box ml="37%"
         data-testid="note-card"
         width="250px"
         overflow="hidden"
@@ -20,7 +20,7 @@ const NoteCard = ({ note })=> {
         marginBottom="12px"
         bg="#1a759f"
       >
-        <Text
+        <Text 
           fontSize="lg"
           color="#d9ed92"
           marginTop="1"

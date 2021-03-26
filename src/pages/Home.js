@@ -16,7 +16,7 @@ ml="28%"
 mb="1%"
 w={"50%"}
 p={8}>
-      <Heading as="h1" paddingBottom="36px">
+      <Heading as="h1" textAlign="center" paddingBottom="36px">
         Notitile mele
       </Heading>
       { 

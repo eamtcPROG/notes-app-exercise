@@ -5,17 +5,17 @@ const client = new faunadb.Client({
 });
 const q = faunadb.query;
 
-// client
-//   .query(q.CreateCollection({ name: 'notes' }))
-//   .then((ret) => console.log(ret));
+client
+  .query(q.CreateCollection({ name: 'notes' }))
+  .then((ret) => console.log(ret));
 
-// client
-//   .query(
-//     q.CreateIndex({
-//       name: 'notes',
-//       source: q.Collection('notes'),
-//     })
-//   )
-//   .then((ret) => console.log(ret));
+client
+  .query(
+    q.CreateIndex({
+      name: 'notes',
+      source: q.Collection('notes'),
+    })
+  )
+  .then((ret) => console.log(ret));
 
 export { client, q };

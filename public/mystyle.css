@@ -1,0 +1,14 @@
+.App{
+    background-color: #76c893;
+}
+
+.loginForm{
+    border: solid black 3px;
+    width: 400px;
+    margin-left: 40%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+body{
+    background-color: #76c893;
+}

@@ -11,7 +11,7 @@ import {
   Heading,
   Button
 } from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+import { HamburgerIcon, CloseIcon, SmallAddIcon } from '@chakra-ui/icons';
 import { useDispatch } from 'react-redux';
 
 
@@ -22,7 +22,7 @@ import Note from './pages/Note';
 import EditNote from './pages/EditNote.js';
 import Login from './pages/Login';
 import PrivateRoute from './components/PrivateRoute';
-
+import Signup from './pages/Signup';
 
 
 
@@ -51,6 +51,26 @@ function App() {
       })
       .catch(console.error);
   }, []);
+  const loguot = (e) => {
+    
+    localStorage.removeItem("token");
+    fetch(`http://localhost:5000/api/authentication/logout`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then((res) => {
+      switch (res.status) {
+        case 200:
+          setIsAuthenticated(false);
+          break;
+        default:
+          setIsAuthenticated(true);
+          break;
+      }
+    }) .catch(console.error);
+}
 
 
   useEffect(() => {
@@ -102,7 +122,8 @@ function App() {
               fontWeight={400}
               bg={'#184e77'}
               p={"10px"} 
-              
+              type={"button"}
+              onClick={loguot}
               >
               Logout
             </Button>:
@@ -166,6 +187,12 @@ function App() {
               path="/login"
               render={(props) => (
                 <Login {...props} setIsAuthenticated={setIsAuthenticated} />
+              )}
+            />
+            <Route
+              path="/register"
+              render={(props) => (
+                <Signup {...props} setIsAuthenticated={setIsAuthenticated} />
               )}
             />
             <PrivateRoute

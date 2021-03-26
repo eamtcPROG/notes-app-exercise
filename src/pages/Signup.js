@@ -12,10 +12,11 @@ import {
   } from '@chakra-ui/react';
 
 
-function Login({ setIsAuthenticated }) {
+function Signup({ setIsAuthenticated }) {
   const history = useHistory();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
   const [error, setError] = useState('');
 
   const handleUsernameChange = (e) => {
@@ -24,11 +25,35 @@ function Login({ setIsAuthenticated }) {
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
   };
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
   // Controlled form
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch(`http://localhost:5000/api/authentication/login`, {
+    fetch(`http://localhost:5000/api/user`, {
+      method: 'POST',
+      credentials: 'include',
+      body: JSON.stringify({
+        username,
+        email,
+        password,
+      }),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    }).then((res) => {
+      if (res.status === 200) {
+        return res.json();
+      
+      }
+
+      setError('Invalid credentials');
+     
+    }).then((res) => {
+      fetch(`http://localhost:5000/api/authentication/login`, {
       method: 'POST',
       credentials: 'include',
       body: JSON.stringify({
@@ -45,16 +70,19 @@ function Login({ setIsAuthenticated }) {
         return res.json();
       
       }
-
-      setError('Invalid credentials');
+     // setError('Invalid credentials');
     }).then((data) => {
         localStorage.setItem("token", data.token);
         setIsAuthenticated(true);
         return history.push('/');
       });;
+  });
+    
   };
 
   return (
+
+
 
 <form  onSubmit={handleSubmit}>
 <Box
@@ -71,6 +99,10 @@ p={8}>
     <FormLabel>Username</FormLabel>
     <Input onChange={handleUsernameChange} value={username} type="username" />
   </FormControl>
+  <FormControl id="email">
+    <FormLabel>Email</FormLabel>
+    <Input onChange={handleEmailChange} value={email} type="email" />
+  </FormControl>
   <FormControl id="password">
     <FormLabel >Password</FormLabel>
     <Input  onChange={handlePasswordChange} value={password} type="password" />
@@ -83,7 +115,7 @@ p={8}>
       _hover={{
         bg: 'blue.500',
       }}>
-      Sign in
+      Sign up
     </Button>
   </Stack>
 </Stack>
@@ -93,4 +125,4 @@ p={8}>
   );
 }
 
-export default Login;
+export default Signup;

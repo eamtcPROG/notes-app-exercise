@@ -5,11 +5,12 @@ import { Text, Flex, Box, Heading, Button } from '@chakra-ui/react';
 import DeleteModal from '../components/DeleteModal';
 
 function Note() {
-  const notes = useSelector((state) => state.notes);
-  const params = useParams();
+    const params = useParams();
+    const notes = useSelector((state) => state.notes);
+  
   // [{title, ref: { value: { id:  } }},{}, {}]
-  const selectedNote = notes.find((note) => note._id === params.id);
-
+  const selectedNote = notes.notes.find((note) => note._id === params.id);
+    console.log(selectedNote);
   if (!selectedNote) {
     return (
       <Flex w="100%" h="100vh" alignItems="center" justifyContent="center">
@@ -34,7 +35,7 @@ p={8}>
           {selectedNote.title}
         </Heading>
 
-        <Text>{selectedNote.textt}</Text>
+        <Text>{selectedNote.text}</Text>
       </Box>
 
       <Box w="25%">

@@ -30,7 +30,6 @@ function Login({ setIsAuthenticated }) {
 
     fetch(`https://notes-api-eamtc.herokuapp.com/api/authentication/login`, {
       method: 'POST',
-      credentials: 'include',
       body: JSON.stringify({
         username,
         password,

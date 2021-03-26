@@ -1,4 +1,4 @@
-import { /* getAllNotes, */ createNote, editNote, deleteNote } from '../api';
+import { /* getAllNotes, */ /* createNote */ /* editNote, */ deleteNote } from '../api';
 
 export const GET_NOTES_LOADING_START = 'GET_NOTES_LOADING_START';
 export const GET_NOTES_SUCCESS = 'GET_NOTES_SUCCESS';
@@ -40,11 +40,19 @@ export const CREATE_NOTE_SUCCESS = 'CREATE_NOTE_SUCCESS';
 export const createNoteAction = (note) => {
   return async (dispatch) => {
     try {
-      const createdNote = await createNote(note);
-      dispatch({
-        type: CREATE_NOTE_SUCCESS,
-        payload: createdNote,
-      });
+      const createdNote = await fetch(
+        `https://notes-api-eamtc.herokuapp.com/api/note/`,
+        {
+          method: "POST",
+          body: JSON.stringify({ title: note.title, text: note.text }),
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      ).then((res) => res.json());
+      dispatch({ type: CREATE_NOTE_SUCCESS, payload: createdNote });
     } catch (error) {
       dispatch({
         type: CREATE_NOTE_ERROR,
@@ -60,7 +68,19 @@ export const EDIT_NOTE_SUCCESS = 'EDIT_NOTE_SUCCESS';
 export const editNoteAction = (noteId, note) => {
   return async (dispatch) => {
     try {
-      const editedNote = await editNote(noteId, note);
+      const editedNote = await fetch(
+        `https://notes-api-eamtc.herokuapp.com/api/note/${noteId}`,
+        {
+          method: "PUT",
+          body: JSON.stringify({ title: note.title, text: note.text }),
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: localStorage.getItem("token"),
+          },
+        }
+      ).then((res) => res.json());
+  
       dispatch({ type: EDIT_NOTE_SUCCESS, payload: editedNote });
     } catch (error) {
       dispatch({

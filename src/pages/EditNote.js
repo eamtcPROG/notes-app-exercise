@@ -8,7 +8,7 @@ import {
     Text,
   } from '@chakra-ui/react';
 import NoteForm from '../components/NoteForm';
-import { editNoteAction } from '../actions/notesActions';
+import { editNoteAction } from "../actions/notesActions";
 
 function EditNote() {
   
@@ -17,11 +17,11 @@ function EditNote() {
   const dispatch = useDispatch();
   const notes = useSelector((state) => state.notes);
 
-  const selectedNote = notes.find((note) => note.ref.value.id === params.id);
+  const selectedNote = notes.notes.find((note) => note._id === params.id);
 
   const onSubmitCallback = (note) => {
-    const { id } = selectedNote.ref.value;
-    dispatch(editNoteAction(id, note)).then(() => {
+    const note_id = selectedNote._id;
+    dispatch(editNoteAction(note_id, note)).then(() => {
       history.push('/');
     });
   };
@@ -50,7 +50,7 @@ function EditNote() {
 
       <NoteForm
         onSubmitCallback={onSubmitCallback}
-        inputValues={selectedNote.data}
+        inputValues={selectedNote}
         showCancelButton
         secondaryButtonClickAction={secondaryButtonClickAction}
       />

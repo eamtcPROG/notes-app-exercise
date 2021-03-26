@@ -35,17 +35,14 @@ const notesReducer = (state = initialState, action) => {
       };
     case CREATE_NOTE_SUCCESS:
       return {
-        ...state,
-        loading: false,
-        error: '',
-        notes: [...state.notes, action.payload],
+        ...state, notes: [...state.notes, action.payload]
       };
     case EDIT_NOTE_SUCCESS:
       return {
         ...state,
         loading: false,
         error: '',
-        notes: state.notes.map((note) => {
+        notes: state.notes.notes.map((note) => {
           if (note._id === action.payload._id) {
             return action.payload;
           }
@@ -57,7 +54,7 @@ const notesReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: '',
-        notes: state.notes.filter(
+        notes: state.notes.notes.filter(
           (note) => note.ref.value.id !== action.payload.ref.value.id
         ),
       };

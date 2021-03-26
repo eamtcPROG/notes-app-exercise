@@ -14,8 +14,8 @@ function CreateNote() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const onSubmitCallback = (value) => {
-    dispatch(createNoteAction(value)).then(() => {
+  const onSubmitCallback = (note) => {
+    dispatch(createNoteAction(note)).then(() => {
       history.push('/');
     });
   };

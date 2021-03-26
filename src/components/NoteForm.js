@@ -3,8 +3,7 @@ import { Input, Textarea, Button } from '@chakra-ui/react';
 
 const initialState = {
   title: '',
-  content: '',
-  tags: [],
+  text: '',
 };
 
 function NoteForm({
@@ -35,9 +34,9 @@ function NoteForm({
           mb="24px"
         />
         <Textarea
-          value={value.content}
+          value={value.text}
           onChange={handleInputChange}
-          name="content"
+          name="text"
           placeholder="Detaliile notitei"
           size="sm"
           mb="24px"

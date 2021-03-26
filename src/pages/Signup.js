@@ -34,7 +34,7 @@ function Signup({ setIsAuthenticated }) {
 
     fetch(`https://notes-api-eamtc.herokuapp.com/api/user`, {
       method: 'POST',
-      credentials: 'include',
+      
       body: JSON.stringify({
         username,
         email,
@@ -53,7 +53,7 @@ function Signup({ setIsAuthenticated }) {
     }).then((res) => {
       fetch(`https://notes-api-eamtc.herokuapp.com/api/authentication/login`, {
       method: 'POST',
-      credentials: 'include',
+     
       body: JSON.stringify({
         username,
         password,

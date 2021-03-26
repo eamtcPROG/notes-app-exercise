@@ -166,22 +166,23 @@ function App() {
       
         <Flex>
         <Box width="100%" >
-          <Switch>
+          <Switch>            
+             <PrivateRoute
+            path="/notes/:id/edit"
+            isAuthenticated={isAuthenticated}
+            render={(props) => <EditNote {...props} />}
+          />
             <PrivateRoute
-              path="/notes/:id/edit"
-              component={EditNote}
-              isAuthenticated={isAuthenticated}
-            />
-            <PrivateRoute
-              path="/notes/:id"
-              component={Note}
-              isAuthenticated={isAuthenticated}
-            />
-            <PrivateRoute
-              path="/create-note"
-              component={CreateNote}
-              isAuthenticated={isAuthenticated}
-            />
+            path="/notes/:id"
+            isAuthenticated={isAuthenticated}
+            render={(props) => <Note {...props} />}
+          />
+          <PrivateRoute
+            path="/create-note"
+            isAuthenticated={isAuthenticated}
+            render={(props) => <CreateNote {...props} />}
+          />
+            
             <Route
               path="/login"
               render={(props) => (
@@ -197,8 +198,8 @@ function App() {
             <PrivateRoute
               path="/"              
               isAuthenticated={isAuthenticated}
-              render={(props) => <Home {...props} 
-            />}/>
+              render={(props) => <Home {...props} />}
+              />
           </Switch>
         </Box>
         </Flex>

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import NoteCard from '../components/NoteCard';
 
-const Home = ( props)=> {
+const Home = (props)=> {
   console.log("notes", props.notes);
   return (
     <div>
@@ -19,9 +19,12 @@ p={8}>
       <Heading as="h1" paddingBottom="36px">
         Notitile mele
       </Heading>
-      {props.notes.map((note, id) => {
+      {props.error.error ?
+     null
+      :
+      props.notes.notes.map( (note, id) => {
         return <NoteCard key={id} note={note} />;
-      })}
+      }) }
     </Box>
 
     </div>

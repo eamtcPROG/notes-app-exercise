@@ -1,12 +1,12 @@
 import { client, q } from '../config/db'
 
-const getAllNotes = fetch(`http://localhost:5000/api/note`,{
+const getAllNotes = /* fetch(`http://localhost:5000/api/note`,{
   method: 'GET',  
 headers: {
     Authorization: localStorage.getItem('token'),
   },
-}).then((res) => res.json());
-/*  client.query(
+}).then((res) => res.json()); */
+ client.query(
   q.Paginate(
     q.Match(
       q.Ref('indexes/notes')))
@@ -22,5 +22,5 @@ headers: {
     return client.query(getAllProductDataQuery).then((data) => data)
   })
   .catch((error) => console.log('error', error.message))
- */
+
 export default getAllNotes;

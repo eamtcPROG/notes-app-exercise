@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 
 import { Box, Text } from '@chakra-ui/react';
 
-function NoteCard({ note }) {
-  if (!note || !note.data.title || !note.data.content) {
+const NoteCard = ({ note })=> {
+  if (!note || !note.title || !note.text) {
     return null;
   }
 
   return (
-    <Link to={`/notes/${note.ref.value.id}`}>
+    <Link to={`/notes/${note._id}`}>
       <Box
         data-testid="note-card"
         width="250px"
@@ -29,7 +29,7 @@ function NoteCard({ note }) {
           lineHeight="tight"
           isTruncated
         >
-          {note.data.title}
+          {note.title}
         </Text>
         <Text
         color="#d9ed92"
@@ -39,7 +39,7 @@ function NoteCard({ note }) {
           maxH="50px"
           overflow="hidden"
         >
-          {note.data.content}
+          {note.text}
         </Text>
       </Box>
     </Link>

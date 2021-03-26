@@ -8,7 +8,7 @@ function Note() {
   const notes = useSelector((state) => state.notes);
   const params = useParams();
   // [{title, ref: { value: { id:  } }},{}, {}]
-  const selectedNote = notes.find((note) => note.ref.value.id === params.id);
+  const selectedNote = notes.find((note) => note._id === params.id);
 
   if (!selectedNote) {
     return (
@@ -31,14 +31,14 @@ p={8}>
     <Flex justifyContent="space-between">
       <Box w="100%">
         <Heading as="h1" pb="36px">
-          {selectedNote.data.title}
+          {selectedNote.title}
         </Heading>
 
-        <Text>{selectedNote.data.content}</Text>
+        <Text>{selectedNote.textt}</Text>
       </Box>
 
       <Box w="25%">
-        <Link to={`/notes/${selectedNote.ref.value.id}/edit`}>
+        <Link to={`/notes/${selectedNote._id}/edit`}>
           <Button
             backgroundColor="blue.600"
             color="white"
@@ -50,7 +50,7 @@ p={8}>
             Edit
           </Button>
         </Link>
-        <Link to={`/notes/${selectedNote.ref.value.id}/delete`}>
+        <Link to={`/notes/${selectedNote._id}/delete`}>
           <Button
             backgroundColor="red.600"
             color="white"

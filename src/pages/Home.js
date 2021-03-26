@@ -1,15 +1,11 @@
 import React from 'react';
-import { Heading, Text,Box ,useColorModeValue} from '@chakra-ui/react';
-import { useSelector } from 'react-redux';
+import { Heading, Box ,useColorModeValue} from '@chakra-ui/react';
+import { connect } from 'react-redux';
 
 import NoteCard from '../components/NoteCard';
 
-function Home() {
-const { notes, loading } = useSelector((state) => ({
-    notes: state.notes,
-    loading: state.loading,
-  }));
-
+const Home = ( props)=> {
+  console.log("notes", props.notes);
   return (
     <div>
       <Box rounded={'lg'}
@@ -23,16 +19,16 @@ p={8}>
       <Heading as="h1" paddingBottom="36px">
         Notitile mele
       </Heading>
-      {loading ? (
-        <Text>Loading...</Text>
-      ) : (
-        notes.map((note) => <NoteCard note={note} />)
-      )}
+      {props.notes.map((note, id) => {
+        return <NoteCard key={id} note={note} />;
+      })}
     </Box>
 
     </div>
   );
 }
+const mapStateToProps = (state) => {
+  return { loading: state.loading, error: state.error, notes: state.notes };
+};
 
-
-export default Home;
+export default connect(mapStateToProps)(Home);

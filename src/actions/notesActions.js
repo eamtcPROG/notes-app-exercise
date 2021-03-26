@@ -1,24 +1,24 @@
-import { getAllNotes, createNote, editNote, deleteNote } from '../api';
+import { /* getAllNotes, */ createNote, editNote, deleteNote } from '../api';
 
 export const GET_NOTES_LOADING_START = 'GET_NOTES_LOADING_START';
 export const GET_NOTES_SUCCESS = 'GET_NOTES_SUCCESS';
 export const GET_NOTES_ERROR = 'GET_NOTES_ERROR';
 
 
-export const getNotesAction = () => {
-  return async (dispatch, getState) => {
+export const getNotesAction = () => 
+  async (dispatch) => {
     dispatch({
       type: GET_NOTES_LOADING_START,
     });
 
     try {
-      const notes = await getAllNotes();
-     /*  const notes = await fetch(`http://localhost:5000/api/note`,{
+      //const notes = await getAllNotes();
+      const notes = await fetch(`http://localhost:5000/api/note`,{
         method: 'GET',  
       headers: {
           Authorization: localStorage.getItem('token'),
         },
-      }).then((res) => res.json()); */
+      }).then((res) => res.json());
     
 
       dispatch({
@@ -32,7 +32,7 @@ export const getNotesAction = () => {
       });
     }
   };
-};
+
 
 export const CREATE_NOTE_ERROR = 'CREATE_NOTE_ERROR';
 export const CREATE_NOTE_SUCCESS = 'CREATE_NOTE_SUCCESS';

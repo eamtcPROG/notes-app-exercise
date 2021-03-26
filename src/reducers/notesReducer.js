@@ -46,11 +46,9 @@ const notesReducer = (state = initialState, action) => {
         loading: false,
         error: '',
         notes: state.notes.map((note) => {
-          if (note.ref.value.id === action.payload.ref.value.id) {
-            // inlocuirea
+          if (note._id === action.payload._id) {
             return action.payload;
           }
-
           return note;
         }),
       };

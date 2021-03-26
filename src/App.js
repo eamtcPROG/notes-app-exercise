@@ -196,10 +196,10 @@ function App() {
               )}
             />
             <PrivateRoute
-              path="/"
-              component={Home}
+              path="/"              
               isAuthenticated={isAuthenticated}
-            />
+              render={(props) => <Home {...props} 
+            />}/>
           </Switch>
         </Box>
         </Flex>

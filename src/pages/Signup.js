@@ -17,7 +17,7 @@ function Signup({ setIsAuthenticated }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const [error, setError] = useState('');
+
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -49,8 +49,6 @@ function Signup({ setIsAuthenticated }) {
         return res.json();
       
       }
-
-      setError('Invalid credentials');
      
     }).then((res) => {
       fetch(`http://localhost:5000/api/authentication/login`, {
@@ -108,7 +106,6 @@ p={8}>
     <Input  onChange={handlePasswordChange} value={password} type="password" />
   </FormControl>
   <Stack spacing={10}>
-    {error && <div>{error}</div>}
     <Button type="Submit"
       bg={'blue.400'}
       color={'white'}

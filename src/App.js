@@ -51,8 +51,8 @@ function App() {
       })
       .catch(console.error);
   }, []);
-  const loguot = (e) => {
-    
+  
+  const loguot = () => {
     localStorage.removeItem("token");
     fetch(`http://localhost:5000/api/authentication/logout`, {
       method: 'GET',
@@ -69,7 +69,7 @@ function App() {
           setIsAuthenticated(true);
           break;
       }
-    }) .catch(console.error);
+    });
 }
 
 

@@ -6,6 +6,7 @@ import {
     Box,
     Heading,
     Text,
+    Flex
   } from '@chakra-ui/react';
 import NoteForm from '../components/NoteForm';
 import { editNoteAction } from "../actions/notesActions";
@@ -15,9 +16,20 @@ function EditNote() {
   const params = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
-  const notes = useSelector((state) => state.notes);
+  const notes = useSelector((state) => state.notes.notes);
+  
+  if(notes!== null){
+    return (
+        <Flex w="100%" h="100vh" alignItems="center" justifyContent="center">
+          <Text color="red.600">Oops, nu am gasit notita</Text>
+        </Flex>
+      );
+}
 
-  const selectedNote = notes.notes.find((note) => note._id === params.id);
+  console.log(notes);
+  const selectedNote =  notes.find((note) => note._id === params.id);
+  
+
 
   const onSubmitCallback = (note) => {
     const note_id = selectedNote._id;

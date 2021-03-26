@@ -19,12 +19,13 @@ p={8}>
       <Heading as="h1" paddingBottom="36px">
         Notitile mele
       </Heading>
-      {props.error.error ?
-     null
-      :
-      props.notes.notes.map( (note, id) => {
-        return <NoteCard key={id} note={note} />;
-      }) }
+      { 
+        props.notes.notes?
+       props.notes.notes.map( (note, id) => {
+        return <NoteCard key={id} note={note} />; }):null
+       }
+      
+      
     </Box>
 
     </div>

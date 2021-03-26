@@ -6,10 +6,18 @@ import DeleteModal from '../components/DeleteModal';
 
 function Note() {
     const params = useParams();
-    const notes = useSelector((state) => state.notes);
-  
+    
+    
+    const notes = useSelector((state) => state.notes.notes);
+    if(notes!== null){
+        return (
+            <Flex w="100%" h="100vh" alignItems="center" justifyContent="center">
+              <Text color="red.600">Oops, nu am gasit notita</Text>
+            </Flex>
+          );
+    }
   // [{title, ref: { value: { id:  } }},{}, {}]
-  const selectedNote = notes.notes.find((note) => note._id === params.id);
+  const selectedNote = notes.find((note) => note._id === params.id);
     console.log(selectedNote);
   if (!selectedNote) {
     return (

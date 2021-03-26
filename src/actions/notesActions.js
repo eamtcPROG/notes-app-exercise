@@ -1,4 +1,4 @@
-import { /* getAllNotes, */ /* createNote */ /* editNote, */ deleteNote } from '../api';
+//import { /* getAllNotes, */ /* createNote */ /* editNote, */ deleteNote } from '../api';
 
 export const GET_NOTES_LOADING_START = 'GET_NOTES_LOADING_START';
 export const GET_NOTES_SUCCESS = 'GET_NOTES_SUCCESS';
@@ -94,17 +94,20 @@ export const editNoteAction = (noteId, note) => {
 export const DELETE_NOTE_ERROR = 'DELETE_NOTE_ERROR';
 export const DELETE_NOTE_SUCCESS = 'DELETE_NOTE_SUCCESS';
 
-export const deleteNoteAction = (noteId) => {
-  return (dispatch) => {
-    return deleteNote(noteId)
-      .then((deletedNote) => {
-        dispatch({ type: DELETE_NOTE_SUCCESS, payload: deletedNote });
-      })
-      .catch((error) => {
-        dispatch({
-          type: DELETE_NOTE_ERROR,
-          payload: 'Ceva nu a mers bine',
-        });
-      });
-  };
+export const deleteNoteAction = (noteId) => async (dispatch) => {
+  try {
+    const deletedNote = await fetch(
+      `https://notes-api-eamtc.herokuapp.com/api/note/${noteId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: localStorage.getItem("token"),
+        },
+      }
+    ).then((res) => res.json());
+
+    dispatch({ type: DELETE_NOTE_SUCCESS, payload: deletedNote });
+  } catch (error) {
+    dispatch({ type: DELETE_NOTE_ERROR, payload: error.message });
+  }
 };

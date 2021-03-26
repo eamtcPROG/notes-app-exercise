@@ -53,10 +53,10 @@ const notesReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        error: '',
-        notes: state.notes.notes.filter(
-          (note) => note.ref.value.id !== action.payload.ref.value.id
-        ),
+        error: "",
+        notes: state.notes.notes.filter((note) => {
+          return note._id !== action.payload._id;
+        })
       };
     default:
       return state;

@@ -11,7 +11,7 @@ import {
   Heading,
   Button
 } from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon, SmallAddIcon } from '@chakra-ui/icons';
+import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { useDispatch } from 'react-redux';
 
 

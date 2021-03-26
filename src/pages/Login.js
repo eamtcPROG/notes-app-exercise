@@ -2,17 +2,12 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import {
-    Flex,
     Box,
     FormControl,
     FormLabel,
     Input,
-    Checkbox,
     Stack,
-    Link,
     Button,
-    Heading,
-    Text,
     useColorModeValue,
   } from '@chakra-ui/react';
 

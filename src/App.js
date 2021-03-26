@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Switch, NavLink, useHistory } from 'react-router-dom';
+import { Route, Switch, NavLink } from 'react-router-dom';
 import {
   Box,
   Flex,

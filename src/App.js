@@ -34,12 +34,11 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem('token');
 
-    fetch(`http://localhost:5000/api/authentication/check-auth`, {
+    fetch(`https://notes-api-eamtc.herokuapp.com/api/authentication/check-auth`, {
       headers: {
         Authorization: token,
       },
-    }) // notes/290849183671256581
-      .then((res) => {
+    }).then((res) => {
         switch (res.status) {
           case 200:
             setIsAuthenticated(true);
@@ -54,7 +53,7 @@ function App() {
   
   const loguot = () => {
     localStorage.removeItem("token");
-    fetch(`http://localhost:5000/api/authentication/logout`, {
+    fetch(`https://notes-api-eamtc.herokuapp.com/api/authentication/logout`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',

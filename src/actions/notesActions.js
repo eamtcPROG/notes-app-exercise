@@ -13,7 +13,7 @@ export const getNotesAction = () =>
 
     try {
       //const notes = await getAllNotes();
-      const notes = await fetch(`http://localhost:5000/api/note`,{
+      const notes = await fetch(`https://notes-api-eamtc.herokuapp.com/api/note`,{
         method: 'GET',  
       headers: {
           Authorization: localStorage.getItem('token'),

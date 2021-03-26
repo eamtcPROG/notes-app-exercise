@@ -32,7 +32,7 @@ function Signup({ setIsAuthenticated }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch(`http://localhost:5000/api/user`, {
+    fetch(`https://notes-api-eamtc.herokuapp.com/api/user`, {
       method: 'POST',
       credentials: 'include',
       body: JSON.stringify({
@@ -51,7 +51,7 @@ function Signup({ setIsAuthenticated }) {
       }
      
     }).then((res) => {
-      fetch(`http://localhost:5000/api/authentication/login`, {
+      fetch(`https://notes-api-eamtc.herokuapp.com/api/authentication/login`, {
       method: 'POST',
       credentials: 'include',
       body: JSON.stringify({

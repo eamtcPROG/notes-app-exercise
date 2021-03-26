@@ -28,7 +28,7 @@ function Login({ setIsAuthenticated }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    fetch(`http://localhost:5000/api/authentication/login`, {
+    fetch(`https://notes-api-eamtc.herokuapp.com/api/authentication/login`, {
       method: 'POST',
       credentials: 'include',
       body: JSON.stringify({

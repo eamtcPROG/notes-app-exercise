@@ -23,7 +23,7 @@ const notesReducer = (state = initialState, action) => {
     case GET_NOTES_SUCCESS:
       return {
         ...state,
-        notes: action.payload.note,
+        notes: action.payload,
         loading: false,
         error: '',
       };

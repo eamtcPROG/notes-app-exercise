@@ -19,12 +19,13 @@ export const getNotesAction = () =>
           Authorization: localStorage.getItem('token'),
         },
       }).then((res) => res.json());
-    
-
-      dispatch({
-        type: GET_NOTES_SUCCESS,
-        payload: notes,
-      });
+    console.log(notes);
+      if(Array.isArray(notes.notes)){
+        dispatch({
+          type: GET_NOTES_SUCCESS,
+          payload: notes.notes,
+        });
+      }
     } catch (error) {
       dispatch({
         type: GET_NOTES_ERROR,
@@ -105,7 +106,7 @@ export const deleteNoteAction = (noteId) => async (dispatch) => {
         },
       }
     ).then((res) => res.json());
-
+      console.log(deletedNote);
     dispatch({ type: DELETE_NOTE_SUCCESS, payload: deletedNote });
   } catch (error) {
     dispatch({ type: DELETE_NOTE_ERROR, payload: error.message });

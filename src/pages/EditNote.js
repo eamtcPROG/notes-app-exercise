@@ -5,28 +5,28 @@ import { useParams, useHistory } from 'react-router-dom';
 import {
     Box,
     Heading,
-    Text,
-    Flex
+    Text
   } from '@chakra-ui/react';
 import NoteForm from '../components/NoteForm';
 import { editNoteAction } from "../actions/notesActions";
 
-function EditNote() {
+function EditNote(props) {
   
   const params = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
-  const notes = useSelector((state) => state.notes.notes);
   
-  if(notes!== null){
+ /*  if(notes!== null){
     return (
         <Flex w="100%" h="100vh" alignItems="center" justifyContent="center">
           <Text color="red.600">Oops, nu am gasit notita</Text>
         </Flex>
-      );
-}
+      ); */
+//}
 
-  console.log(notes);
+ 
+  const notes = useSelector((state) => state.notes);
+  console.log(notes)
   const selectedNote =  notes.find((note) => note._id === params.id);
   
 

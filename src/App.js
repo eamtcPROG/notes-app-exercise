@@ -73,8 +73,10 @@ function App() {
 
 
   useEffect(() => {
-    dispatch(getNotesAction());
-  }, [dispatch]);
+    if(isAuthenticated === true){
+      dispatch(getNotesAction());
+    }
+  }, [dispatch,isAuthenticated]);
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <div className="App">
